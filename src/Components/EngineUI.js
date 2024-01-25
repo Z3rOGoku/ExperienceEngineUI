@@ -29,8 +29,8 @@ export default function EngineUI() {
     const value = document.getElementById(`inputValue${index}`).value;
     const score = document.getElementById(`inputScore${index}`).value;
 
-    if (!ruleType || !operator || !value || isNaN(value) || !score || isNaN(score)) {
-      setWarningMessage('Please fill in all fields with valid values.');
+    if (!ruleType || !operator || isNaN(value) || isNaN(score)) {
+      setWarningMessage('Please fill in all fields with valid numeric values.');
       return;
     }
 
@@ -39,9 +39,9 @@ export default function EngineUI() {
     const newExpression = {
       key: ruleType,
       output: {
-        value: parseInt(value, 10),
+        value: parseFloat(value),
         operator: operator,
-        score: parseInt(score, 10),
+        score: parseFloat(score),
       },
     };
 
@@ -107,13 +107,13 @@ export default function EngineUI() {
               <label htmlFor={`inputValue${formIndex}`} className="form-label">
                 Value
               </label>
-              <input type="text" className="form-control" id={`inputValue${formIndex}`} />
+              <input type="number" className="form-control" id={`inputValue${formIndex}`} />
             </div>
             <div className="col-md-2">
               <label htmlFor={`inputScore${formIndex}`} className="form-label">
                 Score
               </label>
-              <input type="text" className="form-control" id={`inputScore${formIndex}`} />
+              <input type="number" className="form-control" id={`inputScore${formIndex}`} />
             </div>
             <div className="col-md-2">
               <button
